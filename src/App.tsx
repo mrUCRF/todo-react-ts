@@ -28,7 +28,9 @@ function App() {
     <div>
       <AddTodo todoList={todoList} setTodo={setTodo} />
       <TodoList todoList={todoList} setTodo={setTodo} />
+   
     </div>
+      
     
   );
 }
