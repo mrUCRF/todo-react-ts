@@ -11,9 +11,6 @@ export interface TodoListI {
 
 function App() {
 
-  
-
-  
   let [todoList, setTodo] = useState<TodoListI[]>([
     {
       id: 1,

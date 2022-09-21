@@ -19,6 +19,9 @@ const TodoList: React.FC<Props> = ({todoList, setTodo}) => {
     })
     setTodo(todo)
   }
+  function editTodo(id: number) {
+
+  }
 
 
     return (
@@ -28,6 +31,7 @@ const TodoList: React.FC<Props> = ({todoList, setTodo}) => {
           <div key={i.id}>
           <div>{i.name}</div>
           <button onClick={() => deleteTodo(i.id)}>Удалить</button>
+          <button onClick={() => editTodo(i.id)}>Редактировать</button>
           <button onClick={() => completedTodo(i.id)}>Изменить статус</button>
 
           </div>

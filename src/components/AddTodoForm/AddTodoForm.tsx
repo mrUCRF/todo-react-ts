@@ -1,6 +1,7 @@
 import { getValue } from "@testing-library/user-event/dist/utils";
 import { useState } from "react";
 import { VscChromeClose } from "react-icons/vsc";
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
     todoList: any,
@@ -8,17 +9,18 @@ interface Props {
   }
 
 const AddTodo: React.FC<Props> = ({todoList, setTodo}) => {
-   const [newTodoData, setNewTodo] = useState('')
+   let [newTodoData, setNewTodo] = useState('')
    
    
     function saveTodo() {
         setTodo(
-            [...todoList], {
-                id: todoList.id + 1, 
+            [...todoList, {
+                id: uuidv4(), 
                 name: newTodoData,
                 status: true
-            }
+            }]
         )
+        setNewTodo('')
    }
     return (
         <div className="todo-list">
