@@ -1,6 +1,4 @@
-import { getValue } from "@testing-library/user-event/dist/utils";
 import { useState } from "react";
-import { VscChromeClose } from "react-icons/vsc";
 import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
@@ -17,16 +15,19 @@ const AddTodo: React.FC<Props> = ({todoList, setTodo}) => {
             [...todoList, {
                 id: uuidv4(), 
                 name: newTodoData,
-                status: true
+                status: false
             }]
         )
         setNewTodo('')
    }
     return (
-        <div className="todo-list">
-      <input placeholder="Добавьте задачу" onChange={(e) => setNewTodo(e.target.value)}  value={newTodoData}/>
-      <button onClick={saveTodo}>Сохранить</button>
-    </div>
+      <div className='form-group row'>
+              <div className='form-group mb-2 col-sm-10'>
+              <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Введите задачу" 
+              onChange={(e) => setNewTodo(e.target.value)}  value={newTodoData}></input>
+              </div>
+              <button className='btn btn-success mb-2 col-sm-2' onClick={saveTodo}>Добавить</button>
+            </div>
     )
 }
 

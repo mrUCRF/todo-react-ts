@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { VscChromeClose } from "react-icons/vsc";
-import { isTemplateExpression } from "typescript";
 import { TodoListI } from "../../App";
 
 interface Props {
@@ -43,24 +41,57 @@ const TodoList: React.FC<Props> = ({todoList, setTodo}) => {
 
     return (
         <div>
-      {
+         <table className="table text-white mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Status</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+             
+                 {
         todoList.map( (i: TodoListI) => (
-          <div key={i.id}>
+          <tr className="fw-normal" key={i.id}>
             {
-              editMode === i.id ? <div><input type="text" onChange={(e) => setValueEditInput(e.target.value)} value={valueEditInput} /></div> : <div>{i.name}</div>
+              i.status 
+              ? <th><button  type="button" className="btn btn-success" onClick={() => completedTodo(i.id)}>+</button></th>
+              : <th><button type="button" className="btn btn-dunger" onClick={() => completedTodo(i.id)}>+</button></th>
+            }
+           
+            {
+              editMode === i.id 
+              ? <div><input type="text" onChange={(e) => setValueEditInput(e.target.value)} value={valueEditInput} /></div> 
+              : <><td className="align-middle"><span>{i.name}</span></td></>
             }
           {
             editMode === i.id 
-            ? <div><button onClick={() => saveChanges(i.id)}>Сохранить</button> </div>
-            : <div><button onClick={() => deleteTodo(i.id)}>Удалить</button>
-            <button onClick={() => editTodo(i.id, i.name)}>Редактировать</button>
-            <button onClick={() => completedTodo(i.id)}>Изменить статус</button></div>
+            ? <><td><button onClick={() => saveChanges(i.id)}>Сохранить</button></td> </>
+            : <>
+            <td><button type="button" className="btn btn-warning" onClick={() => editTodo(i.id, i.name)}>Edit</button></td>
+            <td><button type="button" className="btn btn-danger" onClick={() => deleteTodo(i.id)}>Delete</button></td>
+            
+            </>
           }
           
-
-          </div>
+          </tr>
         ))
       }
+                <tr className="fw-normal">
+                  <th>
+                    <span className="ms-2">Alice Mayer</span>
+                  </th>
+                  <td className="align-middle">
+                    <span>Call Sam For payments</span>
+                  </td>
+                  <td className="align-middle">
+                    <h6 className="mb-0"><span className="badge bg-danger">High priority</span></h6>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
     </div>
     )
 }
