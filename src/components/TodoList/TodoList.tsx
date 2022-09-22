@@ -52,7 +52,6 @@ const TodoList: React.FC<Props> = ({todoList, setTodo, filteredTodo}) => {
                 </tr>
               </thead>
               <tbody>
-             
                  {
         filteredTodo.map( (i: TodoListI) => (
           <tr className="fw-normal" key={i.id}>
@@ -61,21 +60,18 @@ const TodoList: React.FC<Props> = ({todoList, setTodo, filteredTodo}) => {
               ? <th><button  type="button" className="btn btn-success" onClick={() => completedTodo(i.id)}>+</button></th>
               : <th><button type="button" className="btn btn-dunger" onClick={() => completedTodo(i.id)}>+</button></th>
             }
-           
             {
               editMode === i.id 
-              ? <><input type="text" className="form-control p-2 mt-2" aria-describedby="emailHelp" 
-              onChange={(e) => setValueEditInput(e.target.value)} value={valueEditInput} /></> 
-              : <><td className="align-middle"><span>{i.name}</span></td></>
+              ? <td><input type="text" className="form-control" aria-describedby="emailHelp" 
+              onChange={(e) => setValueEditInput(e.target.value)} value={valueEditInput}/></td> 
+              : <td className="align-middle col-sm-6"><span>{i.name}</span></td>
             }
-          {
+            {
             editMode === i.id 
-            ? <><td><button type="button" className="btn btn-warning" onClick={() => saveChanges(i.id)}>Save</button></td> </>
-            : <><td><button type="button" className="btn btn-warning" onClick={() => editTodo(i.id, i.name)}>Edit</button></td>
-            <td><button type="button" className="btn btn-danger" onClick={() => deleteTodo(i.id)}>Delete</button></td>
-            </>
-          }
-          
+            ? <td><button type="button" className="btn btn-warning col-sm-10" onClick={() => saveChanges(i.id)}>Save</button></td> 
+            : <><td><button type="button" className="btn btn-warning col-sm-10" onClick={() => editTodo(i.id, i.name)}>Edit</button></td>
+            <td><button type="button" className="btn btn-danger" onClick={() => deleteTodo(i.id)}>Delete</button></td></>
+            }
           </tr>
         ))
       }
