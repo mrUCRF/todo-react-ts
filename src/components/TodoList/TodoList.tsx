@@ -79,17 +79,6 @@ const TodoList: React.FC<Props> = ({todoList, setTodo}) => {
           </tr>
         ))
       }
-                <tr className="fw-normal">
-                  <th>
-                    <span className="ms-2">Alice Mayer</span>
-                  </th>
-                  <td className="align-middle">
-                    <span>Call Sam For payments</span>
-                  </td>
-                  <td className="align-middle">
-                    <h6 className="mb-0"><span className="badge bg-danger">High priority</span></h6>
-                  </td>
-                </tr>
               </tbody>
             </table>
     </div>
