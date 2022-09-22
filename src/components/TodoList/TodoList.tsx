@@ -71,10 +71,8 @@ const TodoList: React.FC<Props> = ({todoList, setTodo, filteredTodo}) => {
           {
             editMode === i.id 
             ? <><td><button type="button" className="btn btn-warning" onClick={() => saveChanges(i.id)}>Save</button></td> </>
-            : <>
-            <td><button type="button" className="btn btn-warning" onClick={() => editTodo(i.id, i.name)}>Edit</button></td>
+            : <><td><button type="button" className="btn btn-warning" onClick={() => editTodo(i.id, i.name)}>Edit</button></td>
             <td><button type="button" className="btn btn-danger" onClick={() => deleteTodo(i.id)}>Delete</button></td>
-            
             </>
           }
           
