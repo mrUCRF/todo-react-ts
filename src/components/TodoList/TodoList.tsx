@@ -61,7 +61,7 @@ const TodoList: React.FC<Props> = ({todoList, setTodo, filteredTodo}) => {
             }
             {
               editMode === i.id 
-              ? <td><input type="text" className="form-control" aria-describedby="emailHelp" 
+              ? <td><input type="text" className="form-control" 
               onChange={(e) => setValueEditInput(e.target.value)} value={valueEditInput}/></td> 
               : <td className="align-middle col-sm-6"><span className="m-2">{i.name}</span></td>
             }
