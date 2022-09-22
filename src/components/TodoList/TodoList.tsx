@@ -58,7 +58,7 @@ const TodoList: React.FC<Props> = ({todoList, setTodo, filteredTodo}) => {
             {
               i.status 
               ? <th><button  type="button" className="btn btn-success" onClick={() => completedTodo(i.id)}>+</button></th>
-              : <th><button type="button" className="btn btn-dunger" onClick={() => completedTodo(i.id)}>+</button></th>
+              : <th><button type="button" className="btn btn-danger" onClick={() => completedTodo(i.id)}>+</button></th>
             }
             {
               editMode === i.id 

@@ -23,7 +23,7 @@ const AddTodo: React.FC<Props> = ({todoList, setTodo}) => {
     return (
       <div className='form-group row'>
               <div className='form-group mb-2 col-sm-10'>
-              <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter task.." 
+              <input type="text" className="form-control" placeholder="Enter task.." 
               onChange={(e) => setNewTodo(e.target.value)}  value={newTodoData}></input>
               </div>
               <button className='btn btn-success mb-2 col-sm-2'  onClick={saveTodo}>AddTask</button>
