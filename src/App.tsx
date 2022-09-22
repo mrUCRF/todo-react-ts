@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import TodoList from './components/TodoList/TodoList';
 import AddTodo from './components/AddTodoForm/AddTodoForm';
+import SearchTodo from './components/SearchTodo/SearchTodo';
 
 export interface TodoListI {
   id: number,
@@ -23,7 +24,27 @@ function App() {
       status: false
     }
   ])
-
+  let [filtered, setFiltered] = useState<TodoListI[]>([])
+  useEffect(()  => {
+      setFiltered(todoList)
+    },
+    [todoList]
+  );
+  const search = (value: any) => {
+    let currentTodos = []
+    let newList = []
+    if(value !== '') {
+      currentTodos = todoList
+      newList = currentTodos.filter(todo => {
+        const lc = todo.name.toLowerCase()
+        const filter = value.toLowerCase()
+        return lc.includes(filter)
+      })
+    } else {
+      newList = todoList
+    }
+    setFiltered(newList)
+  }
   return (
     <div>
        <section className="vh-100 gradient-custom-2">
@@ -39,7 +60,8 @@ function App() {
             </div>
 
       <AddTodo todoList={todoList} setTodo={setTodo} />
-      <TodoList todoList={todoList} setTodo={setTodo} />
+      <SearchTodo search={search}/>
+      <TodoList todoList={todoList} setTodo={setTodo} filteredTodo={filtered}/>
       </div>
       </div>
       </div>

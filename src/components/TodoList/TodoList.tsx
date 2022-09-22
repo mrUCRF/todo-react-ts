@@ -3,9 +3,10 @@ import { TodoListI } from "../../App";
 
 interface Props {
   todoList: any,
-  setTodo: any
+  setTodo: any,
+  filteredTodo: any
 }
-const TodoList: React.FC<Props> = ({todoList, setTodo}) => {
+const TodoList: React.FC<Props> = ({todoList, setTodo, filteredTodo}) => {
   const [editMode, setEditMode] = useState<null | number>(null)
   const [valueEditInput, setValueEditInput] = useState('')
 
@@ -53,7 +54,7 @@ const TodoList: React.FC<Props> = ({todoList, setTodo}) => {
               <tbody>
              
                  {
-        todoList.map( (i: TodoListI) => (
+        filteredTodo.map( (i: TodoListI) => (
           <tr className="fw-normal" key={i.id}>
             {
               i.status 
@@ -63,12 +64,13 @@ const TodoList: React.FC<Props> = ({todoList, setTodo}) => {
            
             {
               editMode === i.id 
-              ? <div><input type="text" onChange={(e) => setValueEditInput(e.target.value)} value={valueEditInput} /></div> 
+              ? <><input type="text" className="form-control p-2 mt-2" aria-describedby="emailHelp" 
+              onChange={(e) => setValueEditInput(e.target.value)} value={valueEditInput} /></> 
               : <><td className="align-middle"><span>{i.name}</span></td></>
             }
           {
             editMode === i.id 
-            ? <><td><button onClick={() => saveChanges(i.id)}>Сохранить</button></td> </>
+            ? <><td><button type="button" className="btn btn-warning" onClick={() => saveChanges(i.id)}>Save</button></td> </>
             : <>
             <td><button type="button" className="btn btn-warning" onClick={() => editTodo(i.id, i.name)}>Edit</button></td>
             <td><button type="button" className="btn btn-danger" onClick={() => deleteTodo(i.id)}>Delete</button></td>
