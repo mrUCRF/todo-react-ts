@@ -30,7 +30,7 @@ function App() {
     },
     [todoList]
   );
-  const search = (value: any) => {
+  const search = (value: string) => {
     let currentTodos = []
     let newList = []
     if(value !== '') {

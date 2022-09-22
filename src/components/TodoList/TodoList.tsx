@@ -2,14 +2,13 @@ import { useState } from "react";
 import { TodoListI } from "../../App";
 
 interface Props {
-  todoList: any,
-  setTodo: any,
-  filteredTodo: any
+  todoList: TodoListI[],
+  setTodo: (todo: TodoListI[]) => void,
+  filteredTodo: TodoListI[]
 }
 const TodoList: React.FC<Props> = ({todoList, setTodo, filteredTodo}) => {
   const [editMode, setEditMode] = useState<null | number>(null)
   const [valueEditInput, setValueEditInput] = useState('')
-
   function deleteTodo(id: number) {
     let todo = [...todoList].filter(i => i.id != id)
     setTodo(todo)
@@ -64,13 +63,13 @@ const TodoList: React.FC<Props> = ({todoList, setTodo, filteredTodo}) => {
               editMode === i.id 
               ? <td><input type="text" className="form-control" aria-describedby="emailHelp" 
               onChange={(e) => setValueEditInput(e.target.value)} value={valueEditInput}/></td> 
-              : <td className="align-middle col-sm-6"><span>{i.name}</span></td>
+              : <td className="align-middle col-sm-6"><span className="m-2">{i.name}</span></td>
             }
             {
             editMode === i.id 
             ? <td><button type="button" className="btn btn-warning col-sm-10" onClick={() => saveChanges(i.id)}>Save</button></td> 
             : <><td><button type="button" className="btn btn-warning col-sm-10" onClick={() => editTodo(i.id, i.name)}>Edit</button></td>
-            <td><button type="button" className="btn btn-danger" onClick={() => deleteTodo(i.id)}>Delete</button></td></>
+            <><td><button type="button" className="btn btn-danger" onClick={() => deleteTodo(i.id)}>Delete</button></td></></>
             }
           </tr>
         ))

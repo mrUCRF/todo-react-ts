@@ -1,6 +1,6 @@
 
 interface Props {
-    search: any
+    search: (value: string) => void
 }
 
 const SearchTodo: React.FC<Props> = ({search}) => {
