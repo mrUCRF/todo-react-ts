@@ -1,25 +1,41 @@
 import React, { Fragment } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
+import { CustomInput, InputStyleType } from "../Input/Input";
+import { ITodoList } from "../TodoApp/TodoApp";
 
 export interface IEditTaskMod {
   setValue: (e: string) => void;
   value: string;
-  saveChanges: (e: any) => void;
   id: number;
+  todoList: ITodoList[];
+  setTodo: (todo: ITodoList[]) => void;
+  setEditMode: (e: null) => void;
 }
 
 export const EditTaskMod: React.FC<IEditTaskMod> = ({
   setValue,
   value,
   id,
-  saveChanges,
+  todoList,
+  setTodo,
+  setEditMode,
 }) => {
+  function saveChanges(id: number) {
+    let newTodo = [...todoList].map((i) => {
+      if (i.id === id) {
+        i.name = value;
+      }
+      return i;
+    });
+    setTodo(newTodo);
+    setEditMode(null);
+  }
+
   return (
     <Fragment>
       <td>
-        <input
-          type="text"
-          className="form-control"
+        <CustomInput
+          style={InputStyleType.DEFAULT}
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />

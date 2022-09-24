@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
+import { CustomInput, InputStyleType } from "../Input/Input";
 
 interface Props {
   todoList: any;
@@ -25,13 +26,12 @@ const AddTodo: React.FC<Props> = ({ todoList, setTodo }) => {
     <Fragment>
       <div className="form-group row">
         <div className="form-group mb-2 col-sm-10">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter task.."
+          <CustomInput
+            style={InputStyleType.DEFAULT}
+            placeholder="Enter task..."
             onChange={(e) => setNewTodo(e.target.value)}
             value={newTodoData}
-          ></input>
+          />
         </div>
         <CustomButton
           buttonText="AddTask"

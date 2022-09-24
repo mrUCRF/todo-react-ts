@@ -26,28 +26,6 @@ const initialState = [
 export const TodoApp = () => {
   let [todoList, setTodo] = useState<ITodoList[]>(initialState);
   let [filtered, setFiltered] = useState<ITodoList[]>([]);
-  useEffect(() => {
-    setFiltered(todoList);
-  }, [todoList]);
-
-  const search = useCallback(
-    (value: string) => {
-      let currentTodos = [];
-      let newList = [];
-      if (value !== "") {
-        currentTodos = todoList;
-        newList = currentTodos.filter((todo) => {
-          const lc = todo.name.toLowerCase();
-          const filter = value.toLowerCase();
-          return lc.includes(filter);
-        });
-      } else {
-        newList = todoList;
-      }
-      setFiltered(newList);
-    },
-    [filtered]
-  );
 
   return (
     <div>
@@ -67,7 +45,8 @@ export const TodoApp = () => {
                   </div>
 
                   <AddTodoForm todoList={todoList} setTodo={setTodo} />
-                  <SearchTodo search={search} />
+                  <SearchTodo setFiltered={setFiltered} todoList={todoList} />
+
                   <table className="table text-white mb-0">
                     <TaskHeader />
                     <TaskList

@@ -40,17 +40,6 @@ export const TaskList: React.FC<Props> = ({
     setValueEditInput(name);
   }
 
-  function saveChanges(id: number) {
-    let newTodo = [...todoList].map((i) => {
-      if (i.id === id) {
-        i.name = valueEditInput;
-      }
-      return i;
-    });
-    setTodo(newTodo);
-    setEditMode(null);
-  }
-
   return (
     <Fragment>
       <tbody>
@@ -70,7 +59,9 @@ export const TaskList: React.FC<Props> = ({
                   setValue={setValueEditInput}
                   value={valueEditInput}
                   id={i.id}
-                  saveChanges={saveChanges}
+                  todoList={todoList}
+                  setTodo={setTodo}
+                  setEditMode={setEditMode}
                 />
               </>
             ) : (
