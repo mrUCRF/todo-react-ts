@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import AddTodo from "../AddTodoForm/AddTodoForm";
+import AddTodoForm from "../AddTodoForm/AddTodoForm";
 import SearchTodo from "../SearchTodo/SearchTodo";
-import TodoList from "../TaskHeader/TaskHeader";
+import TaskHeader from "../TaskHeader/TaskHeader";
+import { TaskList } from "../TaskList/TaskList";
 
 export interface ITodoList {
   id: number;
@@ -25,7 +26,7 @@ const initialState = [
 export const TodoApp = () => {
   let [todoList, setTodo] = useState<ITodoList[]>(initialState);
   let [filtered, setFiltered] = useState<ITodoList[]>([]);
-
+  console.log(filtered);
   useEffect(() => {
     setFiltered(todoList);
   }, [todoList]);
@@ -62,13 +63,26 @@ export const TodoApp = () => {
                     />
                     <h2 className="my-4">Task List</h2>
                   </div>
-                  <AddTodo todoList={todoList} setTodo={setTodo} />
+
+                  <div className="form-group row">
+                    <AddTodoForm todoList={todoList} setTodo={setTodo} />
+                  </div>
+
                   <SearchTodo search={search} />
-                  <TodoList
-                    todoList={todoList}
-                    setTodo={setTodo}
-                    filteredTodo={filtered}
-                  />
+
+                  <table className="table text-white mb-0">
+                    <thead>
+                      <TaskHeader />
+                    </thead>
+                    <tbody>
+                      <TaskList
+                        todoList={todoList}
+                        setTodo={setTodo}
+                        filteredTodo={filtered}
+                        setFiltered={setFiltered}
+                      />
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

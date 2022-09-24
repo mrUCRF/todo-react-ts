@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 
 interface Props {
   todoList: any;
@@ -21,7 +22,7 @@ const AddTodo: React.FC<Props> = ({ todoList, setTodo }) => {
     setNewTodo("");
   }
   return (
-    <div className="form-group row">
+    <Fragment>
       <div className="form-group mb-2 col-sm-10">
         <input
           type="text"
@@ -31,10 +32,13 @@ const AddTodo: React.FC<Props> = ({ todoList, setTodo }) => {
           value={newTodoData}
         ></input>
       </div>
-      <button className="btn btn-success mb-2 col-sm-2" onClick={saveTodo}>
-        AddTask
-      </button>
-    </div>
+      <CustomButton
+        buttonText="AddTask"
+        btnStyle={BtnStyleType.SUCCESS}
+        btnSize={BtnSizeType.ADD_TASK}
+        onClick={saveTodo}
+      />
+    </Fragment>
   );
 };
 
