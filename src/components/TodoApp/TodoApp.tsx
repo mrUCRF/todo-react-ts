@@ -26,26 +26,28 @@ const initialState = [
 export const TodoApp = () => {
   let [todoList, setTodo] = useState<ITodoList[]>(initialState);
   let [filtered, setFiltered] = useState<ITodoList[]>([]);
-  console.log(filtered);
   useEffect(() => {
     setFiltered(todoList);
   }, [todoList]);
 
-  const search = useCallback((value: string) => {
-    let currentTodos = [];
-    let newList = [];
-    if (value !== "") {
-      currentTodos = todoList;
-      newList = currentTodos.filter((todo) => {
-        const lc = todo.name.toLowerCase();
-        const filter = value.toLowerCase();
-        return lc.includes(filter);
-      });
-    } else {
-      newList = todoList;
-    }
-    setFiltered(newList);
-  }, []);
+  const search = useCallback(
+    (value: string) => {
+      let currentTodos = [];
+      let newList = [];
+      if (value !== "") {
+        currentTodos = todoList;
+        newList = currentTodos.filter((todo) => {
+          const lc = todo.name.toLowerCase();
+          const filter = value.toLowerCase();
+          return lc.includes(filter);
+        });
+      } else {
+        newList = todoList;
+      }
+      setFiltered(newList);
+    },
+    [filtered]
+  );
 
   return (
     <div>
@@ -64,24 +66,16 @@ export const TodoApp = () => {
                     <h2 className="my-4">Task List</h2>
                   </div>
 
-                  <div className="form-group row">
-                    <AddTodoForm todoList={todoList} setTodo={setTodo} />
-                  </div>
-
+                  <AddTodoForm todoList={todoList} setTodo={setTodo} />
                   <SearchTodo search={search} />
-
                   <table className="table text-white mb-0">
-                    <thead>
-                      <TaskHeader />
-                    </thead>
-                    <tbody>
-                      <TaskList
-                        todoList={todoList}
-                        setTodo={setTodo}
-                        filteredTodo={filtered}
-                        setFiltered={setFiltered}
-                      />
-                    </tbody>
+                    <TaskHeader />
+                    <TaskList
+                      todoList={todoList}
+                      setTodo={setTodo}
+                      filteredTodo={filtered}
+                      setFiltered={setFiltered}
+                    />
                   </table>
                 </div>
               </div>

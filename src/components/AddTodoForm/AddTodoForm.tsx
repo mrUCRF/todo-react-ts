@@ -23,21 +23,24 @@ const AddTodo: React.FC<Props> = ({ todoList, setTodo }) => {
   }
   return (
     <Fragment>
-      <div className="form-group mb-2 col-sm-10">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Enter task.."
-          onChange={(e) => setNewTodo(e.target.value)}
-          value={newTodoData}
-        ></input>
+      <div className="form-group row">
+        <div className="form-group mb-2 col-sm-10">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter task.."
+            onChange={(e) => setNewTodo(e.target.value)}
+            value={newTodoData}
+          ></input>
+        </div>
+        <CustomButton
+          buttonText="AddTask"
+          btnStyle={BtnStyleType.SUCCESS}
+          btnSize={BtnSizeType.ADD_TASK}
+          onClick={saveTodo}
+        />
+         
       </div>
-      <CustomButton
-        buttonText="AddTask"
-        btnStyle={BtnStyleType.SUCCESS}
-        btnSize={BtnSizeType.ADD_TASK}
-        onClick={saveTodo}
-      />
     </Fragment>
   );
 };
