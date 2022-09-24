@@ -53,7 +53,6 @@ export const TodoApp = () => {
                       todoList={todoList}
                       setTodo={setTodo}
                       filteredTodo={filtered}
-                      setFiltered={setFiltered}
                     />
                   </table>
                 </div>

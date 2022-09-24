@@ -8,22 +8,15 @@ interface Props {
   todoList: ITodoList[];
   setTodo: (todo: ITodoList[]) => void;
   filteredTodo: ITodoList[];
-  setFiltered: (e: any) => void;
 }
 
 export const TaskList: React.FC<Props> = ({
   todoList,
   setTodo,
   filteredTodo,
-  setFiltered,
 }) => {
   const [editMode, setEditMode] = useState<null | number>(null);
   const [valueEditInput, setValueEditInput] = useState("");
-
-  function deleteTodo(id: number) {
-    let todo = [...todoList].filter((i) => i.id !== id);
-    setTodo(todo);
-  }
 
   function completedTodo(id: number) {
     let todo = [...todoList].filter((i) => {
@@ -33,11 +26,6 @@ export const TaskList: React.FC<Props> = ({
       return i;
     });
     setTodo(todo);
-  }
-
-  function editTodo(id: number, name: string) {
-    setEditMode(id);
-    setValueEditInput(name);
   }
 
   return (
@@ -54,36 +42,23 @@ export const TaskList: React.FC<Props> = ({
             </th>
 
             {editMode === i.id ? (
-              <>
-                <EditTaskMod
-                  setValue={setValueEditInput}
-                  value={valueEditInput}
-                  id={i.id}
-                  todoList={todoList}
-                  setTodo={setTodo}
-                  setEditMode={setEditMode}
-                />
-              </>
+              <EditTaskMod
+                setValue={setValueEditInput}
+                value={valueEditInput}
+                id={i.id}
+                todoList={todoList}
+                setTodo={setTodo}
+                setEditMode={setEditMode}
+              />
             ) : (
-              <>
-                <Task taskName={i.name} />
-                <td>
-                  <CustomButton
-                    buttonText="Edit"
-                    btnStyle={BtnStyleType.WARNING}
-                    btnSize={BtnSizeType.EDIT_SAVE_DELETE}
-                    onClick={() => editTodo(i.id, i.name)}
-                  />
-                </td>
-                <td>
-                  <CustomButton
-                    buttonText="Delete"
-                    btnStyle={BtnStyleType.DANGER}
-                    btnSize={BtnSizeType.EDIT_SAVE_DELETE}
-                    onClick={() => deleteTodo(i.id)}
-                  />
-                </td>
-              </>
+              <Task
+                taskName={i.name}
+                id={i.id}
+                setEditMode={setEditMode}
+                setValueEditInput={setValueEditInput}
+                todoList={todoList}
+                setTodo={setTodo}
+              />
             )}
           </tr>
         ))}
