@@ -1,27 +1,19 @@
 import { Fragment, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { CustomInput, InputStyleType } from "../Input/Input";
+import { useAppDispatch } from "../redux/hooks/redux";
+import { TodoSlice } from "../redux/reducers/TodoSlice";
 
-interface Props {
-  todoList: any;
-  setTodo: any;
-}
-
-const AddTodo: React.FC<Props> = ({ todoList, setTodo }) => {
+const AddTodo: React.FC = () => {
   let [newTodoData, setNewTodo] = useState("");
 
-  function saveTodo() {
-    setTodo([
-      ...todoList,
-      {
-        id: uuidv4(),
-        name: newTodoData,
-        status: false,
-      },
-    ]);
+  const { addTodo } = TodoSlice.actions;
+  const dispatch = useAppDispatch();
+
+  const addNewTodo = () => {
+    dispatch(addTodo(newTodoData));
     setNewTodo("");
-  }
+  };
   return (
     <Fragment>
       <div className="form-group row">
@@ -37,9 +29,8 @@ const AddTodo: React.FC<Props> = ({ todoList, setTodo }) => {
           buttonText="AddTask"
           btnStyle={BtnStyleType.SUCCESS}
           btnSize={BtnSizeType.ADD_TASK}
-          onClick={saveTodo}
+          onClick={addNewTodo}
         />
-         
       </div>
     </Fragment>
   );

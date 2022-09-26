@@ -1,5 +1,6 @@
 import { Fragment, useCallback, useEffect } from "react";
 import { CustomInput, InputStyleType } from "../Input/Input";
+import { useAppSelector } from "../redux/hooks/redux";
 import { ITodoList } from "../TodoApp/TodoApp";
 
 interface Props {
@@ -17,7 +18,7 @@ const SearchTodo: React.FC<Props> = ({ todoList, setFiltered }) => {
     let newList = [];
     if (value !== "") {
       currentTodos = todoList;
-      newList = currentTodos.filter((todo) => {
+      newList = currentTodos.filter((todo: { name: string }) => {
         const lc = todo.name.toLowerCase();
         const filter = value.toLowerCase();
         return lc.includes(filter);

@@ -7,48 +7,26 @@ import { Task } from "../Task/Task";
 import { ITodoList } from "../TodoApp/TodoApp";
 
 interface Props {
-  todoList: ITodoList[];
-  setTodo: (todo: ITodoList[]) => void;
   filteredTodo: ITodoList[];
 }
 
-export const TaskList: React.FC<Props> = ({
-  todoList,
-  setTodo,
-  filteredTodo,
-}) => {
-  /////REDUX
-  console.log(filteredTodo);
-  const data = useAppSelector((state) => {
-    console.log(state.todoReducer);
-    return state.todoReducer;
-  });
-  const { addTodo } = TodoSlice.actions;
+export const TaskList: React.FC<Props> = ({ filteredTodo }) => {
+  const { completedTodo1 } = TodoSlice.actions;
   const dispatch = useAppDispatch();
-  /////
+
   const [editMode, setEditMode] = useState<null | number>(null);
   const [valueEditInput, setValueEditInput] = useState("");
-
-  function completedTodo(id: number) {
-    let todo = [...todoList].filter((i) => {
-      if (i.id === id) {
-        i.status = !i.status;
-      }
-      return i;
-    });
-    setTodo(todo);
-  }
 
   return (
     <Fragment>
       <tbody>
-        {data.map((i: ITodoList) => (
+        {filteredTodo.map((i: ITodoList) => (
           <tr className="fw-normal" key={i.id}>
             <th>
               <CustomButton
                 btnStyle={i.status ? BtnStyleType.SUCCESS : BtnStyleType.DANGER}
                 buttonText="+"
-                onClick={() => completedTodo(i.id)}
+                onClick={() => dispatch(completedTodo1(i.id))}
               />
             </th>
 
@@ -57,8 +35,6 @@ export const TaskList: React.FC<Props> = ({
                 setValue={setValueEditInput}
                 value={valueEditInput}
                 id={i.id}
-                todoList={todoList}
-                setTodo={setTodo}
                 setEditMode={setEditMode}
               />
             ) : (
@@ -67,8 +43,6 @@ export const TaskList: React.FC<Props> = ({
                 id={i.id}
                 setEditMode={setEditMode}
                 setValueEditInput={setValueEditInput}
-                todoList={todoList}
-                setTodo={setTodo}
               />
             )}
           </tr>

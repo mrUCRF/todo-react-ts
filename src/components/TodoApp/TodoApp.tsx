@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
+import { useAppSelector } from "../redux/hooks/redux";
 import SearchTodo from "../SearchTodo/SearchTodo";
 import TaskHeader from "../TaskHeader/TaskHeader";
 import { TaskList } from "../TaskList/TaskList";
@@ -10,21 +11,11 @@ export interface ITodoList {
   status: boolean;
 }
 
-const initialState = [
-  {
-    id: 1,
-    name: "todo1",
-    status: false,
-  },
-  {
-    id: 2,
-    name: "todo2",
-    status: false,
-  },
-];
-
 export const TodoApp = () => {
-  let [todoList, setTodo] = useState<ITodoList[]>(initialState);
+  const todoList = useAppSelector((state) => {
+    return state.todoReducer;
+  });
+
   let [filtered, setFiltered] = useState<ITodoList[]>([]);
 
   return (
@@ -44,16 +35,12 @@ export const TodoApp = () => {
                     <h2 className="my-4">Task List</h2>
                   </div>
 
-                  <AddTodoForm todoList={todoList} setTodo={setTodo} />
+                  <AddTodoForm />
                   <SearchTodo setFiltered={setFiltered} todoList={todoList} />
 
                   <table className="table text-white mb-0">
                     <TaskHeader />
-                    <TaskList
-                      todoList={todoList}
-                      setTodo={setTodo}
-                      filteredTodo={filtered}
-                    />
+                    <TaskList filteredTodo={filtered} />
                   </table>
                 </div>
               </div>
