@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { EditTaskMod } from "../EditTaskMod/EditTaskMod";
+import { useAppDispatch, useAppSelector } from "../redux/hooks/redux";
+import { TodoSlice } from "../redux/reducers/TodoSlice";
 import { Task } from "../Task/Task";
 import { ITodoList } from "../TodoApp/TodoApp";
 
@@ -15,6 +17,15 @@ export const TaskList: React.FC<Props> = ({
   setTodo,
   filteredTodo,
 }) => {
+  /////REDUX
+  console.log(filteredTodo);
+  const data = useAppSelector((state) => {
+    console.log(state.todoReducer);
+    return state.todoReducer;
+  });
+  const { addTodo } = TodoSlice.actions;
+  const dispatch = useAppDispatch();
+  /////
   const [editMode, setEditMode] = useState<null | number>(null);
   const [valueEditInput, setValueEditInput] = useState("");
 
@@ -31,7 +42,7 @@ export const TaskList: React.FC<Props> = ({
   return (
     <Fragment>
       <tbody>
-        {filteredTodo.map((i: ITodoList) => (
+        {data.map((i: ITodoList) => (
           <tr className="fw-normal" key={i.id}>
             <th>
               <CustomButton
