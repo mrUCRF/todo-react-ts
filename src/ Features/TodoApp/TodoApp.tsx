@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useId, useState } from "react";
 import AddTodoForm from "../../components/AddTodoForm/AddTodoForm";
 import { useTodoSearch } from "../../hooks/useTodoSearch";
-import { useAppSelector } from "../../components/redux/hooks/redux";
-import { RootState } from "../../components/redux/store/store";
+import { useAppSelector } from "../../app/redux-store/hooks/redux";
+import { RootState } from "../../app/store";
 import SearchTodo from "../../components/SearchTodo/SearchTodo";
 import TaskHeader from "../../components/TaskHeader/TaskHeader";
 import { TaskList } from "../../components/TaskList/TaskList";
@@ -15,7 +14,7 @@ export interface ITodoList {
 
 export const TodoApp = () => {
   const todoList = useAppSelector((state: RootState) => {
-    return state.todoReducer;
+    return state.todo;
   });
 
   const [searchResult, onSearch] = useTodoSearch(todoList);

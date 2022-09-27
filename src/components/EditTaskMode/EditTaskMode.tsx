@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { CustomInput, InputStyleType } from "../Input/Input";
-import { useAppDispatch } from "../redux/hooks/redux";
-import { TodoSlice } from "../redux/reducers/TodoSlice";
+import { useAppDispatch } from "../../app/redux-store/hooks/redux";
+import { TodoSlice } from "../../app/redux-store/slice/TodoSlice";
 
 export interface IEditTaskMod {
   setValue: (e: string) => void;

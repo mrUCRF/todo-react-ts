@@ -1,10 +1,10 @@
 import { Fragment, useEffect, useState } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
-import { EditTaskMod } from "../EditTaskMod/EditTaskMod";
-import { useAppDispatch } from "../redux/hooks/redux";
-import { TodoSlice } from "../redux/reducers/TodoSlice";
+import { EditTaskMod } from "../EditTaskMode/EditTaskMode";
+import { useAppDispatch } from "../../app/redux-store/hooks/redux";
+import { TodoSlice } from "../../app/redux-store/slice/TodoSlice";
 import { Task } from "../Task/Task";
-import { ITodoList } from "../../ Features/TodoApp/TodoApp";
+import { ITodoList } from "../../ features/TodoApp/TodoApp";
 
 interface Props {
   searchResult: any;
