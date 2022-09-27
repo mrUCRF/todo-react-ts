@@ -2,9 +2,9 @@ import { Fragment, useEffect, useState } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { EditTaskMod } from "../EditTaskMode/EditTaskMode";
 import { useAppDispatch } from "../../app/redux-store/hooks/redux";
-import { TodoSlice } from "../../app/redux-store/slice/TodoSlice";
+import { TodoSlice } from "../../ features/TodoSlice";
 import { Task } from "../Task/Task";
-import { ITodoList } from "../../ features/TodoApp/TodoApp";
+import { ITodoList } from "../../ features/TodoApp";
 
 interface Props {
   searchResult: any;

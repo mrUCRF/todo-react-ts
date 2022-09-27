@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { ITodoList } from "../ features/TodoApp/TodoApp";
+import { ITodoList } from "../ features/TodoApp";
 
 export const useTodoSearch = (todoList: ITodoList[]) => {
   const [searchResult, setSearchResult] = useState<ITodoList[]>([]);

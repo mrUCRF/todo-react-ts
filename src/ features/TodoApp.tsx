@@ -1,10 +1,10 @@
-import AddTodoForm from "../../components/AddTodoForm/AddTodoForm";
-import { useTodoSearch } from "../../hooks/useTodoSearch";
-import { useAppSelector } from "../../app/redux-store/hooks/redux";
-import { RootState } from "../../app/store";
-import SearchTodo from "../../components/SearchTodo/SearchTodo";
-import TaskHeader from "../../components/TaskHeader/TaskHeader";
-import { TaskList } from "../../components/TaskList/TaskList";
+import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
+import { useTodoSearch } from "../hooks/useTodoSearch";
+import { useAppSelector } from "../app/redux-store/hooks/redux";
+import { RootState } from "../app/store";
+import SearchTodo from "../components/SearchTodo/SearchTodo";
+import TaskHeader from "../components/TaskHeader/TaskHeader";
+import { TaskList } from "../components/TaskList/TaskList";
 
 export interface ITodoList {
   id: number;
