@@ -1,41 +1,15 @@
-import { Fragment, useEffect } from "react";
-import { useSearch } from "../hook/hook";
+import { Fragment } from "react";
 import { CustomInput, InputStyleType } from "../Input/Input";
-import { ITodoList } from "../TodoApp/TodoApp";
 
 interface Props {
-  todoList: ITodoList[];
-  setFiltered: (e: any) => void;
+  onSearch: any; //?
 }
-
-const SearchTodo: React.FC<Props> = ({ todoList, setFiltered }) => {
-  // useEffect(() => {
-  //   setFiltered(todoList);
-  // }, [todoList]);
-  // const filteredData = useSearch(todoList);
-  // console.log(filteredData);
-  const search = (value: string) => {
-    let currentTodos = [];
-    let newList = [];
-    if (value !== "") {
-      currentTodos = todoList;
-      newList = currentTodos.filter((todo: { name: string }) => {
-        const lc = todo.name.toLowerCase();
-        const filter = value.toLowerCase();
-        return lc.includes(filter);
-      });
-    } else {
-      newList = todoList;
-    }
-    setFiltered(newList);
-    // useSearch(newList);
-  };
-
+const SearchTodo: React.FC<Props> = ({ onSearch }) => {
   return (
     <Fragment>
       <CustomInput
         style={InputStyleType.SEARCH_INPUT}
-        onChange={({ target: { value } }) => search(value)}
+        onChange={(e) => onSearch(e)}
         placeholder="Search"
       />
     </Fragment>

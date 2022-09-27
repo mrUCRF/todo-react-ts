@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useId, useState } from "react";
-import AddTodoForm from "../AddTodoForm/AddTodoForm";
-import { useSearch } from "../hook/hook";
-import { useAppSelector } from "../redux/hooks/redux";
-import { RootState } from "../redux/store/store";
-import SearchTodo from "../SearchTodo/SearchTodo";
-import TaskHeader from "../TaskHeader/TaskHeader";
-import { TaskList } from "../TaskList/TaskList";
+import AddTodoForm from "../../components/AddTodoForm/AddTodoForm";
+import { useTodoSearch } from "../../hooks/useTodoSearch";
+import { useAppSelector } from "../../components/redux/hooks/redux";
+import { RootState } from "../../components/redux/store/store";
+import SearchTodo from "../../components/SearchTodo/SearchTodo";
+import TaskHeader from "../../components/TaskHeader/TaskHeader";
+import { TaskList } from "../../components/TaskList/TaskList";
 
 export interface ITodoList {
   id: number;
@@ -18,11 +18,7 @@ export const TodoApp = () => {
     return state.todoReducer;
   });
 
-  const [filtered, setFiltered] = useState<ITodoList[]>([]);
-  // const { filteredData, setInputData } = useSearch(todoList);
-  useEffect(() => {
-    setFiltered(todoList);
-  }, [todoList]);
+  const [searchResult, onSearch] = useTodoSearch(todoList);
 
   return (
     <div>
@@ -42,11 +38,11 @@ export const TodoApp = () => {
                   </div>
 
                   <AddTodoForm />
-                  <SearchTodo setFiltered={setFiltered} todoList={todoList} />
+                  <SearchTodo onSearch={onSearch} />
 
                   <table className="table text-white mb-0">
                     <TaskHeader />
-                    <TaskList filteredTodo={filtered} />
+                    <TaskList searchResult={searchResult} />
                   </table>
                 </div>
               </div>

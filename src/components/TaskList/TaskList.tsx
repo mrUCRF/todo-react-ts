@@ -1,16 +1,16 @@
 import { Fragment, useEffect, useState } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { EditTaskMod } from "../EditTaskMod/EditTaskMod";
-import { useAppDispatch, useAppSelector } from "../redux/hooks/redux";
+import { useAppDispatch } from "../redux/hooks/redux";
 import { TodoSlice } from "../redux/reducers/TodoSlice";
 import { Task } from "../Task/Task";
-import { ITodoList } from "../TodoApp/TodoApp";
+import { ITodoList } from "../../ Features/TodoApp/TodoApp";
 
 interface Props {
-  filteredTodo: ITodoList[]; //ITodoList[];
+  searchResult: any;
 }
 
-export const TaskList: React.FC<Props> = ({ filteredTodo }) => {
+export const TaskList: React.FC<Props> = ({ searchResult }) => {
   const { completedTodo } = TodoSlice.actions;
   const dispatch = useAppDispatch();
 
@@ -20,7 +20,7 @@ export const TaskList: React.FC<Props> = ({ filteredTodo }) => {
   return (
     <Fragment>
       <tbody>
-        {filteredTodo.map((i: ITodoList) => (
+        {searchResult.map((i: ITodoList) => (
           <tr className="fw-normal" key={i.id}>
             <th>
               <CustomButton

@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { useAppDispatch } from "../redux/hooks/redux";
 import { TodoSlice } from "../redux/reducers/TodoSlice";
-import { ITodoList } from "../TodoApp/TodoApp";
 
 export interface ITask {
   taskName: string;
