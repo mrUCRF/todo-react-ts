@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { debug } from "console";
 import { v4 as uuidv4 } from "uuid";
 
 export interface ITodoList {
@@ -40,7 +39,7 @@ export const TodoSlice = createSlice({
         return i;
       });
     },
-    completedTodo1(state, action: PayloadAction<number>) {
+    completedTodo(state, action: PayloadAction<number>) {
       state.map((i: ITodoList) => {
         if (i.id === action.payload) {
           i.status = !i.status;

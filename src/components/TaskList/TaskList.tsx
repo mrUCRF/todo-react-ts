@@ -7,11 +7,11 @@ import { Task } from "../Task/Task";
 import { ITodoList } from "../TodoApp/TodoApp";
 
 interface Props {
-  filteredTodo: ITodoList[];
+  filteredTodo: ITodoList[]; //ITodoList[];
 }
 
 export const TaskList: React.FC<Props> = ({ filteredTodo }) => {
-  const { completedTodo1 } = TodoSlice.actions;
+  const { completedTodo } = TodoSlice.actions;
   const dispatch = useAppDispatch();
 
   const [editMode, setEditMode] = useState<null | number>(null);
@@ -26,7 +26,7 @@ export const TaskList: React.FC<Props> = ({ filteredTodo }) => {
               <CustomButton
                 btnStyle={i.status ? BtnStyleType.SUCCESS : BtnStyleType.DANGER}
                 buttonText="+"
-                onClick={() => dispatch(completedTodo1(i.id))}
+                onClick={() => dispatch(completedTodo(i.id))}
               />
             </th>
 

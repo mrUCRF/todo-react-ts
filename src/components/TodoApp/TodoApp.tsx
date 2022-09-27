@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useId, useState } from "react";
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
+import { useSearch } from "../hook/hook";
 import { useAppSelector } from "../redux/hooks/redux";
+import { RootState } from "../redux/store/store";
 import SearchTodo from "../SearchTodo/SearchTodo";
 import TaskHeader from "../TaskHeader/TaskHeader";
 import { TaskList } from "../TaskList/TaskList";
@@ -12,11 +14,15 @@ export interface ITodoList {
 }
 
 export const TodoApp = () => {
-  const todoList = useAppSelector((state) => {
+  const todoList = useAppSelector((state: RootState) => {
     return state.todoReducer;
   });
 
-  let [filtered, setFiltered] = useState<ITodoList[]>([]);
+  const [filtered, setFiltered] = useState<ITodoList[]>([]);
+  // const { filteredData, setInputData } = useSearch(todoList);
+  useEffect(() => {
+    setFiltered(todoList);
+  }, [todoList]);
 
   return (
     <div>

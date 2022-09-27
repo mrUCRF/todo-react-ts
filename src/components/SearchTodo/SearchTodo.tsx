@@ -1,6 +1,6 @@
-import { Fragment, useCallback, useEffect } from "react";
+import { Fragment, useEffect } from "react";
+import { useSearch } from "../hook/hook";
 import { CustomInput, InputStyleType } from "../Input/Input";
-import { useAppSelector } from "../redux/hooks/redux";
 import { ITodoList } from "../TodoApp/TodoApp";
 
 interface Props {
@@ -9,10 +9,11 @@ interface Props {
 }
 
 const SearchTodo: React.FC<Props> = ({ todoList, setFiltered }) => {
-  useEffect(() => {
-    setFiltered(todoList);
-  }, [todoList]);
-
+  // useEffect(() => {
+  //   setFiltered(todoList);
+  // }, [todoList]);
+  // const filteredData = useSearch(todoList);
+  // console.log(filteredData);
   const search = (value: string) => {
     let currentTodos = [];
     let newList = [];
@@ -27,6 +28,7 @@ const SearchTodo: React.FC<Props> = ({ todoList, setFiltered }) => {
       newList = todoList;
     }
     setFiltered(newList);
+    // useSearch(newList);
   };
 
   return (
