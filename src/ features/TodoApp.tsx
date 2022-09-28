@@ -18,7 +18,7 @@ export const TodoApp = () => {
     return state.todo;
   });
 
-  const [searchResult, onSearch] = useTodoSearch(todoList);
+  const [searchQ, searchResult, onSearch] = useTodoSearch(todoList);
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/login");
@@ -46,7 +46,7 @@ export const TodoApp = () => {
                   </div>
 
                   <AddTodoForm />
-                  <SearchTodo onSearch={onSearch} />
+                  <SearchTodo onSearch={onSearch} searchQ={searchQ} />
 
                   <table className="table text-white mb-0">
                     <TaskHeader />

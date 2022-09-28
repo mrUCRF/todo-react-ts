@@ -3,14 +3,16 @@ import { CustomInput, InputStyleType } from "../Input/Input";
 
 interface Props {
   onSearch: any; //?
+  searchQ: string;
 }
-const SearchTodo: React.FC<Props> = ({ onSearch }) => {
+const SearchTodo: React.FC<Props> = ({ onSearch, searchQ }) => {
   return (
     <Fragment>
       <CustomInput
         style={InputStyleType.SEARCH_INPUT}
         onChange={(e) => onSearch(e)}
         placeholder="Search"
+        value={searchQ}
       />
     </Fragment>
   );

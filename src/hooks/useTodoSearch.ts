@@ -2,7 +2,15 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { ITodoList } from "../ features/TodoApp";
 
-export const useTodoSearch = (todoList: ITodoList[]) => {
+type TodoSearchTuple = [
+  string,
+  ITodoList[] | null,
+  (e: React.ChangeEvent<HTMLInputElement>) => void
+];
+
+export const useTodoSearch = (todoList: ITodoList[]): TodoSearchTuple => {
+  const [searchQ, setSearch] = useState<string>("");
+
   const [searchResult, setSearchResult] = useState<ITodoList[]>([]);
 
   useEffect(() => {
@@ -10,9 +18,10 @@ export const useTodoSearch = (todoList: ITodoList[]) => {
   }, [todoList]);
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value;
+    const { value } = e.target;
     let currentTodos = [];
     let newList = [];
+
     if (value !== "") {
       currentTodos = todoList;
       newList = currentTodos.filter((todo: { name: string }) => {
@@ -23,8 +32,9 @@ export const useTodoSearch = (todoList: ITodoList[]) => {
     } else {
       newList = todoList;
     }
+    setSearch(value);
     setSearchResult(newList);
   };
 
-  return [searchResult, onSearch];
+  return [searchQ, searchResult, onSearch];
 };
