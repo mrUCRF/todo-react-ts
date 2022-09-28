@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { CustomInput, InputStyleType } from "../Input/Input";
 
 interface Props {
-  onSearch: any; //?
+  onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchQ: string;
 }
 const SearchTodo: React.FC<Props> = ({ onSearch, searchQ }) => {

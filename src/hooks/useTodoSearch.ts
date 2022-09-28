@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { ITodoList } from "../ features/TodoApp";
+import { ITodoList } from "../ features/todo/TodoApp";
 
 type TodoSearchTuple = [
   string,

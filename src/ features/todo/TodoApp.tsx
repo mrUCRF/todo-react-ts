@@ -1,10 +1,10 @@
-import AddTodoForm from "../components/AddTodoForm/AddTodoForm";
-import { useTodoSearch } from "../hooks/useTodoSearch";
-import { useAppSelector } from "../app/redux-store/hooks/redux";
-import { RootState } from "../app/store";
-import SearchTodo from "../components/SearchTodo/SearchTodo";
-import TaskHeader from "../components/TaskHeader/TaskHeader";
-import { TaskList } from "../components/TaskList/TaskList";
+import AddTodoForm from "../../components/AddTodoForm/AddTodoForm";
+import { useTodoSearch } from "../../hooks/useTodoSearch";
+import { useAppSelector } from "../../app/hooks";
+import { RootState } from "../../app/store";
+import SearchTodo from "../../components/SearchTodo/SearchTodo";
+import TaskHeader from "../../components/TaskHeader/TaskHeader";
+import { TaskList } from "../../components/TaskList/TaskList";
 import { useNavigate } from "react-router-dom";
 
 export interface ITodoList {

@@ -1,17 +1,16 @@
 import { Fragment, useEffect, useState } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { EditTaskMod } from "../EditTaskMode/EditTaskMode";
-import { useAppDispatch } from "../../app/redux-store/hooks/redux";
-import { TodoSlice } from "../../ features/TodoSlice";
+import { useAppDispatch } from "../../app/hooks";
 import { Task } from "../Task/Task";
-import { ITodoList } from "../../ features/TodoApp";
+import { ITodoList } from "../../ features/todo/TodoApp";
+import { completedTodo } from "../../ features/todo/TodoSlice";
 
 interface Props {
   searchResult: any;
 }
 
 export const TaskList: React.FC<Props> = ({ searchResult }) => {
-  const { completedTodo } = TodoSlice.actions;
   const dispatch = useAppDispatch();
 
   const [editMode, setEditMode] = useState<null | number>(null);

@@ -1,13 +1,12 @@
 import { Fragment, useState } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { CustomInput, InputStyleType } from "../Input/Input";
-import { useAppDispatch } from "../../app/redux-store/hooks/redux";
-import { TodoSlice } from "../../ features/TodoSlice";
+import { useAppDispatch } from "../../app/hooks";
+import { addTodo } from "../../ features/todo/TodoSlice";
 
 const AddTodo: React.FC = () => {
   let [newTodoData, setNewTodo] = useState("");
 
-  const { addTodo } = TodoSlice.actions;
   const dispatch = useAppDispatch();
 
   const addNewTodo = () => {

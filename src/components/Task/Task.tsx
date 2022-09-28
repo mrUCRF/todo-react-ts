@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
-import { useAppDispatch } from "../../app/redux-store/hooks/redux";
-import { TodoSlice } from "../../ features/TodoSlice";
+import { useAppDispatch } from "../../app/hooks";
+import { deleteTodo } from "../../ features/todo/TodoSlice";
 
 export interface ITask {
   taskName: string;
@@ -16,13 +16,12 @@ export const Task: React.FC<ITask> = ({
   setEditMode,
   setValueEditInput,
 }) => {
-  const { deleteTodo } = TodoSlice.actions;
   const dispatch = useAppDispatch();
 
-  function editTodo(id: number, taskName: string) {
+  const editTodo = (id: number, taskName: string) => {
     setEditMode(id);
     setValueEditInput(taskName);
-  }
+  };
 
   return (
     <Fragment>

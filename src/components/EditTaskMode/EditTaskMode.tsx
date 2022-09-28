@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
 import { CustomInput, InputStyleType } from "../Input/Input";
-import { useAppDispatch } from "../../app/redux-store/hooks/redux";
-import { TodoSlice } from "../../ features/TodoSlice";
+import { useAppDispatch } from "../../app/hooks";
+import { editTodo } from "../../ features/todo/TodoSlice";
 
 export interface IEditTaskMod {
   setValue: (e: string) => void;
@@ -17,8 +17,6 @@ export const EditTaskMod: React.FC<IEditTaskMod> = ({
   id,
   setEditMode,
 }) => {
-  const { editTodo } = TodoSlice.actions;
-
   const dispatch = useAppDispatch();
 
   function saveChanges(id: number) {

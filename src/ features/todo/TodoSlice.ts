@@ -1,20 +1,25 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  PayloadAction,
+  nanoid,
+  createEntityAdapter,
+} from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
 export interface ITodoList {
-  id: number;
+  id: any;
   name: string;
   status: boolean;
 }
 
-const initialState: any = [
+const initialState: ITodoList[] = [
   {
-    id: 1,
+    id: nanoid(),
     name: "todo1",
     status: true,
   },
   {
-    id: 2,
+    id: nanoid(),
     name: "todo2",
     status: false,
   },
@@ -26,7 +31,7 @@ export const TodoSlice = createSlice({
   reducers: {
     addTodo(state, action: PayloadAction<string>) {
       state.push({
-        id: uuidv4(),
+        id: nanoid(),
         name: action.payload,
         status: false,
       });
@@ -55,5 +60,6 @@ export const TodoSlice = createSlice({
     },
   },
 });
-
+export const { addTodo, editTodo, completedTodo, deleteTodo } =
+  TodoSlice.actions;
 export default TodoSlice.reducer;
