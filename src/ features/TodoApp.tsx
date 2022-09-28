@@ -5,6 +5,7 @@ import { RootState } from "../app/store";
 import SearchTodo from "../components/SearchTodo/SearchTodo";
 import TaskHeader from "../components/TaskHeader/TaskHeader";
 import { TaskList } from "../components/TaskList/TaskList";
+import { useNavigate } from "react-router-dom";
 
 export interface ITodoList {
   id: number;
@@ -18,6 +19,10 @@ export const TodoApp = () => {
   });
 
   const [searchResult, onSearch] = useTodoSearch(todoList);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/login");
+  };
 
   return (
     <div>
@@ -33,7 +38,11 @@ export const TodoApp = () => {
                       alt="Check"
                       width="60"
                     />
+
                     <h2 className="my-4">Task List</h2>
+                    <button onClick={handleClick} type="button">
+                      goToLoginPage
+                    </button>
                   </div>
 
                   <AddTodoForm />
