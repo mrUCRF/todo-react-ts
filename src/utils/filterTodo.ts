@@ -1,17 +1,22 @@
 import { ITodoList } from "../ features/todo/TodoSlice";
 
-export const filterTodo = (taskList: ITodoList[], value: string) => {
+export enum FilterType {
+  ACTIVE = "active",
+  COMPLETED = "completed",
+  ALL = "all",
+}
+
+export const filterTodo = (taskList: ITodoList[], value: FilterType) => {
   let activeTask = [];
-  if (value) {
-    if (value === "active") {
+
+  switch (value) {
+    case FilterType.ACTIVE:
       activeTask = taskList.filter((i: ITodoList) => !i.status);
       return activeTask;
-    } else if (value === "completed") {
+    case FilterType.COMPLETED:
       activeTask = taskList.filter((i: ITodoList) => i.status);
       return activeTask;
-    } else if (value === "all") {
+    case FilterType.ALL:
       return taskList;
-    }
   }
-  return taskList;
 };
