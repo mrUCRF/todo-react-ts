@@ -7,7 +7,7 @@ import { editTodo } from "../../ features/todo/TodoSlice";
 export interface IEditTaskMod {
   setValue: (e: string) => void;
   value: string;
-  id: number;
+  id: string;
   setEditMode: (e: null) => void;
 }
 
@@ -19,7 +19,7 @@ export const EditTaskMod: React.FC<IEditTaskMod> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  function saveChanges(id: number) {
+  function saveChanges(id: string) {
     dispatch(editTodo({ id, value }));
     setEditMode(null);
   }

@@ -8,15 +8,10 @@ import { TaskList } from "../../components/TaskList/TaskList";
 import { useNavigate } from "react-router-dom";
 import { StatusSortBtn } from "../../components/StatusSortBtn/StatusSortBtn";
 import { useEffect, useState } from "react";
-
-export interface ITodoList {
-  id: number;
-  name: string;
-  status: boolean;
-}
+import { ITodo } from "./TodoSlice";
 
 export const TodoApp = () => {
-  const todoList = useAppSelector((state: RootState) => {
+  const todoList = useAppSelector((state: RootState): ITodo[] => {
     return state.todo;
   });
 

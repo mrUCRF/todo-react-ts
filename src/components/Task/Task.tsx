@@ -5,9 +5,9 @@ import { deleteTodo } from "../../ features/todo/TodoSlice";
 
 export interface ITask {
   taskName: string;
-  id: number;
-  setEditMode: (e: any) => void;
-  setValueEditInput: (e: any) => void;
+  id: string;
+  setEditMode: (id: string) => void;
+  setValueEditInput: (taskName: string) => void;
 }
 
 export const Task: React.FC<ITask> = ({
@@ -18,7 +18,7 @@ export const Task: React.FC<ITask> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  const editTodo = (id: number, taskName: string) => {
+  const editTodo = (id: string, taskName: string) => {
     setEditMode(id);
     setValueEditInput(taskName);
   };

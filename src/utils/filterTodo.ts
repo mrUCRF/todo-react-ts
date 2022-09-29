@@ -1,4 +1,4 @@
-import { ITodoList } from "../ features/todo/TodoSlice";
+import { ITodo } from "./../ features/todo/TodoSlice";
 
 export enum FilterType {
   ACTIVE = "active",
@@ -6,15 +6,15 @@ export enum FilterType {
   ALL = "all",
 }
 
-export const filterTodo = (taskList: ITodoList[], value: FilterType) => {
+export const filterTodo = (taskList: ITodo[], value: FilterType) => {
   let activeTask = [];
 
   switch (value) {
     case FilterType.ACTIVE:
-      activeTask = taskList.filter((i: ITodoList) => !i.status);
+      activeTask = taskList.filter((i: ITodo) => !i.status);
       return activeTask;
     case FilterType.COMPLETED:
-      activeTask = taskList.filter((i: ITodoList) => i.status);
+      activeTask = taskList.filter((i: ITodo) => i.status);
       return activeTask;
     case FilterType.ALL:
       return taskList;

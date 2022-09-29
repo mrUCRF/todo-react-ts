@@ -6,13 +6,13 @@ import {
 } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
-export interface ITodoList {
-  id: any;
+export interface ITodo {
+  id: string;
   name: string;
   status: boolean;
 }
 
-const initialState: ITodoList[] = [
+const initialState: ITodo[] = [
   {
     id: nanoid(),
     name: "todo1",
@@ -37,25 +37,23 @@ export const TodoSlice = createSlice({
       });
     },
     editTodo(state, action) {
-      state.map((i: ITodoList) => {
-        if (i.id === action.payload.id) {
-          i.name = action.payload.value;
+      state.map((todo: ITodo) => {
+        if (todo.id === action.payload.id) {
+          todo.name = action.payload.value;
         }
-        return i;
+        return todo;
       });
     },
-    completedTodo(state, action: PayloadAction<number>) {
-      state.map((i: ITodoList) => {
-        if (i.id === action.payload) {
-          i.status = !i.status;
+    completedTodo(state, action: PayloadAction<string>) {
+      state.map((todo: ITodo) => {
+        if (todo.id === action.payload) {
+          todo.status = !todo.status;
         }
-        return i;
+        return todo;
       });
     },
-    deleteTodo(state, action: PayloadAction<number>) {
-      let newState = state.filter(
-        (task: ITodoList) => task.id !== action.payload
-      );
+    deleteTodo(state, action: PayloadAction<string>) {
+      let newState = state.filter((task: ITodo) => task.id !== action.payload);
       return newState;
     },
   },

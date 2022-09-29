@@ -1,9 +1,9 @@
-import { ITodoList } from "../../ features/todo/TodoSlice";
+import { ITodo } from "../../ features/todo/TodoSlice";
 import { filterTodo, FilterType } from "../../utils/filterTodo";
 
 interface Props {
-  todoList: ITodoList[];
-  setSortData: (e: ITodoList[]) => void;
+  todoList: ITodo[];
+  setSortData: (e: ITodo[]) => void;
 }
 
 export const StatusSortBtn: React.FC<Props> = ({ todoList, setSortData }) => {

@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { ITodoList } from "../ features/todo/TodoApp";
+import { ITodo } from "../ features/todo/TodoSlice";
 
 type TodoSearchTuple = [
   string,
-  ITodoList[] | any,
+  ITodo[],
   (e: React.ChangeEvent<HTMLInputElement>) => void
 ];
 
-export const useTodoSearch = (todoList: ITodoList[]): TodoSearchTuple => {
+export const useTodoSearch = (todoList: ITodo[]): TodoSearchTuple => {
   const [searchQ, setSearch] = useState<string>("");
 
-  const [searchResult, setSearchResult] = useState<ITodoList[]>([]);
+  const [searchResult, setSearchResult] = useState<ITodo[]>([]);
 
   useEffect(() => {
     setSearchResult(todoList);
