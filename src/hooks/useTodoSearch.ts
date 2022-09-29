@@ -4,7 +4,7 @@ import { ITodoList } from "../ features/todo/TodoApp";
 
 type TodoSearchTuple = [
   string,
-  ITodoList[] | null,
+  ITodoList[] | any,
   (e: React.ChangeEvent<HTMLInputElement>) => void
 ];
 

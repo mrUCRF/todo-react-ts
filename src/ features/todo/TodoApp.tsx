@@ -6,6 +6,8 @@ import SearchTodo from "../../components/SearchTodo/SearchTodo";
 import TaskHeader from "../../components/TaskHeader/TaskHeader";
 import { TaskList } from "../../components/TaskList/TaskList";
 import { useNavigate } from "react-router-dom";
+import { StatusSortBtn } from "../../components/StatusSortBtn/StatusSortBtn";
+import { useEffect, useState } from "react";
 
 export interface ITodoList {
   id: number;
@@ -18,7 +20,13 @@ export const TodoApp = () => {
     return state.todo;
   });
 
-  const [searchQ, searchResult, onSearch] = useTodoSearch(todoList);
+  const [sortData, setSortData] = useState(todoList);
+  useEffect(() => {
+    setSortData(todoList);
+  }, [todoList]);
+
+  const [searchQ, searchResult, onSearch] = useTodoSearch(sortData);
+
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/login");
@@ -44,7 +52,10 @@ export const TodoApp = () => {
                       goToLoginPage
                     </button>
                   </div>
-
+                  <StatusSortBtn
+                    todoList={todoList}
+                    setSortData={setSortData}
+                  />
                   <AddTodoForm />
                   <SearchTodo onSearch={onSearch} searchQ={searchQ} />
 

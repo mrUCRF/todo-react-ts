@@ -7,7 +7,7 @@ import { ITodoList } from "../../ features/todo/TodoApp";
 import { completedTodo } from "../../ features/todo/TodoSlice";
 
 interface Props {
-  searchResult: any;
+  searchResult: ITodoList[];
 }
 
 export const TaskList: React.FC<Props> = ({ searchResult }) => {
