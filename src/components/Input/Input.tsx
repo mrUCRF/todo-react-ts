@@ -6,7 +6,7 @@ export enum InputStyleType {
 export interface ICustomInput {
   style: InputStyleType;
   placeholder?: string;
-  onChange?: (e: any) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
 }
 

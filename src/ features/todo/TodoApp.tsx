@@ -12,14 +12,13 @@ import { ITodo } from "./TodoSlice";
 
 export const TodoApp = () => {
   const todoList = useAppSelector((state: RootState): ITodo[] => {
-    return state.todo;
+    return state.todo.todos;
   });
 
   const [sortData, setSortData] = useState(todoList);
   useEffect(() => {
     setSortData(todoList);
   }, [todoList]);
-
   const [searchQ, searchResult, onSearch] = useTodoSearch(sortData);
 
   const navigate = useNavigate();

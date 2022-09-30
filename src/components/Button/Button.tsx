@@ -10,7 +10,7 @@ export enum BtnSizeType {
 }
 
 export interface IButtonProps {
-  onClick?: (e: any) => void;
+  onClick?: () => void;
   buttonText: string;
   btnStyle: BtnStyleType;
   btnSize?: BtnSizeType;
