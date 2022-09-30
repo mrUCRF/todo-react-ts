@@ -9,17 +9,17 @@ import { useNavigate } from "react-router-dom";
 import { StatusSortBtn } from "../../components/StatusSortBtn/StatusSortBtn";
 import { useEffect, useState } from "react";
 import { ITodo } from "./TodoSlice";
+import { filterTodo } from "../../utils/filterTodo";
 
 export const TodoApp = () => {
   const todoList = useAppSelector((state: RootState): ITodo[] => {
-    return state.todo.todos;
+    return filterTodo(state.todo.todos, state.todo.filterType);
   });
-
-  const [sortData, setSortData] = useState(todoList);
-  useEffect(() => {
-    setSortData(todoList);
-  }, [todoList]);
-  const [searchQ, searchResult, onSearch] = useTodoSearch(sortData);
+  // const [sortData, setSortData] = useState(todoList);
+  // useEffect(() => {
+  //   setSortData(todoList);
+  // }, [todoList]);
+  const [searchQ, searchResult, onSearch] = useTodoSearch(todoList);
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -48,7 +48,7 @@ export const TodoApp = () => {
                   </div>
                   <StatusSortBtn
                     todoList={todoList}
-                    setSortData={setSortData}
+                    // setSortData={setSortData}
                   />
                   <AddTodoForm />
                   <SearchTodo onSearch={onSearch} searchQ={searchQ} />

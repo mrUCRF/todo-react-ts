@@ -1,5 +1,9 @@
 import { Fragment } from "react";
-import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
+import {
+  BtnSizeType,
+  BtnStyleType,
+  CustomButton,
+} from "../Button/CustomButton";
 import { useAppDispatch } from "../../app/hooks";
 import { deleteTodo } from "../../ features/todo/TodoSlice";
 

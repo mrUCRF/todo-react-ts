@@ -37,6 +37,9 @@ export const TodoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
+    setFilter(state, action: PayloadAction<FilterType>) {
+      state.filterType = action.payload;
+    },
     addTodo(state, action: PayloadAction<string>) {
       state.todos.push({
         id: nanoid(),
@@ -68,6 +71,6 @@ export const TodoSlice = createSlice({
     },
   },
 });
-export const { addTodo, editTodo, completedTodo, deleteTodo } =
+export const { addTodo, editTodo, completedTodo, deleteTodo, setFilter } =
   TodoSlice.actions;
 export default TodoSlice.reducer;

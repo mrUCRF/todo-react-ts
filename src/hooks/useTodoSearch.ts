@@ -11,8 +11,7 @@ type TodoSearchTuple = [
 export const useTodoSearch = (todoList: ITodo[]): TodoSearchTuple => {
   const [searchQ, setSearch] = useState<string>("");
 
-  const [searchResult, setSearchResult] = useState<ITodo[]>([]);
-
+  const [searchResult, setSearchResult] = useState<ITodo[]>(todoList);
   useEffect(() => {
     setSearchResult(todoList);
   }, [todoList]);

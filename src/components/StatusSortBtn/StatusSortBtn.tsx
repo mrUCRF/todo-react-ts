@@ -1,15 +1,17 @@
-import { ITodo } from "../../ features/todo/TodoSlice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { ITodo, setFilter } from "../../ features/todo/TodoSlice";
 import { filterTodo, FilterType } from "../../utils/filterTodo";
 
 interface Props {
   todoList: ITodo[];
-  setSortData: (e: ITodo[]) => void;
+  // setSortData: (e: ITodo[]) => void;
 }
 
-export const StatusSortBtn: React.FC<Props> = ({ todoList, setSortData }) => {
+export const StatusSortBtn: React.FC<Props> = ({ todoList }) => {
+  const dispatch = useDispatch();
   const getSort = (value: FilterType) => {
-    let result = filterTodo(todoList, value);
-    setSortData(result);
+    return dispatch(setFilter(value));
   };
 
   return (
