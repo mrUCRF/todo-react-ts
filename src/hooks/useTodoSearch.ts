@@ -18,8 +18,8 @@ export const useTodoSearch = (todoList: ITodo[]): TodoSearchTuple => {
       return searchResult;
     }
     return todoList;
-  }, [todoList, searchQ]);
-  console.log(todos);
+  }, [todoList, searchQ, searchResult]);
+
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
