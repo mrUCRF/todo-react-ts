@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useState } from "react";
 import { ITodo } from "../ features/todo/TodoSlice";
 
@@ -11,10 +11,15 @@ type TodoSearchTuple = [
 export const useTodoSearch = (todoList: ITodo[]): TodoSearchTuple => {
   const [searchQ, setSearch] = useState<string>("");
 
-  const [searchResult, setSearchResult] = useState<ITodo[]>(todoList);
-  useEffect(() => {
-    setSearchResult(todoList);
-  }, [todoList]);
+  const [searchResult, setSearchResult] = useState<ITodo[]>([]);
+
+  const todos = useMemo(() => {
+    if (searchQ !== "") {
+      return searchResult;
+    }
+    return todoList;
+  }, [todoList, searchQ]);
+  console.log(todos);
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -22,18 +27,18 @@ export const useTodoSearch = (todoList: ITodo[]): TodoSearchTuple => {
     let newList = [];
 
     if (value !== "") {
-      currentTodos = todoList;
+      currentTodos = todos;
       newList = currentTodos.filter((todo: { name: string }) => {
         const lc = todo.name.toLowerCase();
         const filter = value.toLowerCase();
         return lc.includes(filter);
       });
     } else {
-      newList = todoList;
+      newList = todos;
     }
     setSearch(value);
     setSearchResult(newList);
   };
 
-  return [searchQ, searchResult, onSearch];
+  return [searchQ, todos, onSearch];
 };

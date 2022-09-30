@@ -63,11 +63,10 @@ export const TodoSlice = createSlice({
         return todo;
       });
     },
-    deleteTodo(state, action: PayloadAction<string>): IInitialState {
-      return {
-        ...state,
-        todos: state.todos.filter((task: ITodo) => task.id !== action.payload),
-      };
+    deleteTodo(state, action: PayloadAction<string>) {
+      state.todos = state.todos.filter(
+        (task: ITodo) => task.id !== action.payload
+      );
     },
   },
 });

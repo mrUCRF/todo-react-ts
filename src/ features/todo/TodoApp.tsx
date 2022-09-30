@@ -15,11 +15,7 @@ export const TodoApp = () => {
   const todoList = useAppSelector((state: RootState): ITodo[] => {
     return filterTodo(state.todo.todos, state.todo.filterType);
   });
-  // const [sortData, setSortData] = useState(todoList);
-  // useEffect(() => {
-  //   setSortData(todoList);
-  // }, [todoList]);
-  const [searchQ, searchResult, onSearch] = useTodoSearch(todoList);
+  const [searchQ, todos, onSearch] = useTodoSearch(todoList);
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -55,7 +51,7 @@ export const TodoApp = () => {
 
                   <table className="table text-white mb-0">
                     <TaskHeader />
-                    <TaskList searchResult={searchResult} />
+                    <TaskList todos={todos} />
                   </table>
                 </div>
               </div>

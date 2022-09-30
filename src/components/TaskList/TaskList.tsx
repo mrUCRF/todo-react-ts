@@ -6,10 +6,10 @@ import { Task } from "../Task/Task";
 import { completedTodo, ITodo } from "../../ features/todo/TodoSlice";
 
 interface Props {
-  searchResult: ITodo[];
+  todos: ITodo[];
 }
 
-export const TaskList: React.FC<Props> = ({ searchResult }) => {
+export const TaskList: React.FC<Props> = ({ todos }) => {
   const dispatch = useAppDispatch();
 
   const [editMode, setEditMode] = useState<null | string>(null);
@@ -18,7 +18,7 @@ export const TaskList: React.FC<Props> = ({ searchResult }) => {
   return (
     <Fragment>
       <tbody>
-        {searchResult.map((todo: ITodo) => (
+        {todos.map((todo: ITodo) => (
           <tr className="fw-normal" key={todo.id}>
             <th>
               <CustomButton
