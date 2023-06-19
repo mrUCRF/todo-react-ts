@@ -10,7 +10,7 @@ interface Props {
 const SearchTodo: React.FC<Props> = ({ todoList, setFiltered }) => {
   useEffect(() => {
     setFiltered(todoList);
-  }, [todoList]);
+  }, [setFiltered, todoList]);
 
   const search = (value: string) => {
     let currentTodos = [];
