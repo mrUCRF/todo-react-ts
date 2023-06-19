@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useState } from "react";
-import { BtnSizeType, BtnStyleType, CustomButton } from "../Button/Button";
+import { Fragment, useState } from "react";
+import { BtnStyleType, CustomButton } from "../Button/Button";
 import { EditTaskMod } from "../EditTaskMod/EditTaskMod";
 import { Task } from "../Task/Task";
 import { ITodoList } from "../TodoApp/TodoApp";

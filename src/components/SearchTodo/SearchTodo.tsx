@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { CustomInput, InputStyleType } from "../Input/Input";
 import { ITodoList } from "../TodoApp/TodoApp";
 
